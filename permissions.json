@@ -1,0 +1,270 @@
+[
+  {
+    "name": "actionMessage",
+    "desc": "Allowed to use /me"
+  },
+  {
+    "name": "adminMessageReceive",
+    "desc": "Player receives messages sent to the admin channel"
+  },
+  {
+    "name": "adminMessageSend",
+    "desc": "Player may send messages to the admin channel"
+  },
+  {
+    "name": "antiban",
+    "desc": "Player is immune to /ban"
+  },
+  {
+    "name": "antideregister",
+    "desc": "Player cannot be deregistered with /deregister"
+  },
+  {
+    "name": "antikick",
+    "desc": "Player is immune to /kick"
+  },
+  {
+    "name": "antikill",
+    "desc": "Player is immune to /kill"
+  },
+  {
+    "name": "antipoll",
+    "desc": "Player is immune to /poll"
+  },
+  {
+    "name": "antipollban",
+    "desc": "Player is immune banning with /poll"
+  },
+  {
+    "name": "antipollkick",
+    "desc": "Player is immune kicking with /poll"
+  },
+  {
+    "name": "antipollkill",
+    "desc": "Player is immune killing with /poll"
+  },
+  {
+    "name": "ban",
+    "desc": "Player may ban other players with /ban"
+  },
+  {
+    "name": "banlist",
+    "desc": "Player may list active bans with /banlist"
+  },
+  {
+    "name": "clientquery",
+    "desc": "Player may issue /clientquery, available in version 2.4.3+."
+  },
+  {
+    "name": "countdown",
+    "desc": "Player may issue /countdown"
+  },
+  {
+    "name": "date",
+    "desc": "Player may query the date and time from the server with /date"
+  },
+  {
+    "name": "endGame",
+    "desc": "Player may issue /gameover"
+  },
+  {
+    "name": "flagHistory",
+    "desc": "Player allowed to use /flag history"
+  },
+  {
+    "name": "flagMaster",
+    "desc": "Player allowed to use all /flag commands"
+  },
+  {
+    "name": "flagMod",
+    "desc": "Player allowed to use /flag reset, /flag show and /flag history. Using /flag reset to reset an individual flag requires flagMaster"
+  },
+  {
+    "name": "hideAdmin",
+    "desc": "Player doesn't show @"
+  },
+  {
+    "name": "idlestats",
+    "desc": "Player allowed to use /idlestats"
+  },
+  {
+    "name": "info",
+    "desc": "."
+  },
+  {
+    "name": "jitterwarn",
+    "desc": "Player may use /jitterwarn and /jitterdrop' to query or set jitterwarn/jitterdrop variable"
+  },
+  {
+    "name": "kick",
+    "desc": "Player allowed to use /kick"
+  },
+  {
+    "name": "kill",
+    "desc": "Player allowed to use /kill"
+  },
+  {
+    "name": "lagstats",
+    "desc": "Player may use /lagstats to query the latency of players"
+  },
+  {
+    "name": "lagwarn",
+    "desc": "Player may use /lagwarn and /lagdrop to query or set lagwarn/lagdrop variable"
+  },
+  {
+    "name": "listPerms",
+    "desc": "Player may use /showperms to show the current permissions of the user/selected player."
+  },
+  {
+    "name": "listPlugins",
+    "desc": "Player may use /listplugins"
+  },
+  {
+    "name": "loadPlugin",
+    "desc": "Player may use /loadplugin"
+  },
+  {
+    "name": "masterban",
+    "desc": "Player may use /masterban"
+  },
+  {
+    "name": "modcount",
+    "desc": "Player may use /modcount"
+  },
+  {
+    "name": "mute",
+    "desc": "Player may use /mute"
+  },
+  {
+    "name": "packetlosswarn",
+    "desc": "Player may use /packetlosswarn and /packetlossdrop to query or set packetlosswarn/packetlossdrop variable"
+  },
+  {
+    "name": "playerList",
+    "desc": "Player may use /playerlist"
+  },
+  {
+    "name": "plugins",
+    "desc": "Player may use /listplugins, /loadplugin and /unloadplugin. Requires bzflag to be built with the optional plug-in support, available in version 2.0.10+."
+  },
+  {
+    "name": "poll",
+    "desc": "Player may use /poll"
+  },
+  {
+    "name": "pollBan",
+    "desc": "Player may use /poll ban"
+  },
+  {
+    "name": "pollFlagReset",
+    "desc": "Player may use /poll flagreset"
+  },
+  {
+    "name": "pollKick",
+    "desc": "Player may use /poll kick"
+  },
+  {
+    "name": "pollKill",
+    "desc": "Player may use /poll kill"
+  },
+  {
+    "name": "pollSet",
+    "desc": "Player may use /poll set"
+  },
+  {
+    "name": "privateMessage",
+    "desc": "Player may send private messages with '.'"
+  },
+  {
+    "name": "record",
+    "desc": "Player may use /record"
+  },
+  {
+    "name": "rejoin",
+    "desc": "Allows instant rejoin, regardless of _rejoinTime"
+  },
+  {
+    "name": "removePerms",
+    "desc": "May remove permissions from players"
+  },
+  {
+    "name": "replay",
+    "desc": "Player allowed to use /replay"
+  },
+  {
+    "name": "report",
+    "desc": "Player allowed to use /report"
+  },
+  {
+    "name": "requireIdentify",
+    "desc": "Registered callsigns must identify before they are allowed to spawn"
+  },
+  {
+    "name": "say",
+    "desc": "Player allowed to use /say"
+  },
+  {
+    "name": "sendHelp",
+    "desc": "Player allowed to use /sendhelp"
+  },
+  {
+    "name": "setAll",
+    "desc": "Grants all set* perms, allows use of /reload and /serverdebug"
+  },
+  {
+    "name": "setPerms",
+    "desc": "May grant permissions to players"
+  },
+  {
+    "name": "setVar",
+    "desc": "Player allowed to use /set"
+  },
+  {
+    "name": "shortBan",
+    "desc": "Allowed bans with limited durations only"
+  },
+  {
+    "name": "showAdmin",
+    "desc": "Gives a player an @ regardless of having the \"shortban\" or \"ban\" permission. The hideAdmin permission supersedes the showAdmin permission."
+  },
+  {
+    "name": "showOthers",
+    "desc": "May use /showgroup and /showperms on other callsigns"
+  },
+  {
+    "name": "shutdownServer",
+    "desc": "Player allowed to use /shutdownserver"
+  },
+  {
+    "name": "spawn",
+    "desc": "Join game as a player. Observers don't need this permission."
+  },
+  {
+    "name": "superkill",
+    "desc": "Player allowed to use /superkill"
+  },
+  {
+    "name": "talk",
+    "desc": "Allows player to send messages."
+  },
+  {
+    "name": "unban",
+    "desc": "Player may use /unban"
+  },
+  {
+    "name": "unloadPlugin",
+    "desc": "Player may use /unloadplugin"
+  },
+  {
+    "name": "unmute",
+    "desc": "Player may use /unmute"
+  },
+  {
+    "name": "veto",
+    "desc": "Player may use /veto"
+  },
+  {
+    "name": "viewReports",
+    "desc": "Player may use /viewreports"
+  }
+]
