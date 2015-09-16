@@ -28,10 +28,10 @@ def loadfile(path):
     with open(path) as f:
         return f.read().splitlines()
 
-def createvariable(result):
+def createvariable(name, value):
     global variables
 
-    variables[result.group(1)] = result.group(2)
+    variables[name] = value
 
 def getvariable(name):
     global line_counter
@@ -39,7 +39,7 @@ def getvariable(name):
     try:
         return variables[name]
     except:
-        print "Fatal: Variable", name, "was not previously initialized on line", line_counter
+        print "Fatal: Variable", name, "on line", line_counter, "was not previously initialized."
         sys.exit(2)
 
 def parsevariables(line):
@@ -51,13 +51,13 @@ def parsevariables(line):
 
     return line
 
-def managegroup(line):
+def managegroup(group_name):
     global groups
 
-    if not line in groups:
-        groups[line] = []
+    if not group_name in groups:
+        groups[group_name] = []
 
-    return line
+    return group_name
 
 def handlepermission(group, perm):
     global groups
@@ -154,7 +154,10 @@ for line in filecontents:
         continue
     elif var_instantiation.match(line):
         vardata = re.search(var_instantiation, line)
-        createvariable(vardata)
+        name = vardata.group(1)
+        value = vardata.group(2)
+
+        createvariable(name, value)
         continue
 
     if var_name.search(line) is not None:
