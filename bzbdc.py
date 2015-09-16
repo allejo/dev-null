@@ -59,7 +59,7 @@ def create_group_if_not_exist(group_name):
 
     return group_name
 
-def handlepermission(group, perm):
+def handle_permission(group, perm):
     global groups
 
     action = perm[:1]
@@ -109,7 +109,7 @@ def func_extend(params):
     extend_group = params[1]
 
     for perm in groups[extend_group]:
-        handlepermission(target_group, perm)
+        handle_permission(target_group, perm)
 
 functions = {
     'include': func_include,
@@ -132,12 +132,12 @@ for opt, arg in opts:
         inputfile = arg
 
 
-# Attempt to find the file and load it
-if not os.path.isfile(inputfile):
-    print 'File not found'
+# Load the initial file
+try:
+    filecontents = loadfile(inputfile)
+except IOError:
+    print "Fatal: File not found:", inputfile
     sys.exit(2)
-
-filecontents = loadfile(inputfile)
 
 
 # Main loop
@@ -169,7 +169,7 @@ for line in filecontents:
     line = line.strip()
 
     if line[:1] == "+" or line[:1] == "-" or line[:1] == "!":
-        handlepermission(last_group, line)
+        handle_permission(last_group, line)
     elif line[:1] == "@":
         tokens = line.split(" ")
         func_call = tokens[0][1:]
