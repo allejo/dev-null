@@ -28,12 +28,12 @@ def loadfile(path):
     with open(path) as f:
         return f.read().splitlines()
 
-def createvariable(name, value):
+def set_variable(name, value):
     global variables
 
     variables[name] = value
 
-def getvariable(name):
+def get_variable(name):
     global line_counter
 
     try:
@@ -42,16 +42,16 @@ def getvariable(name):
         print "Fatal: Variable", name, "on line", line_counter, "was not previously initialized."
         sys.exit(2)
 
-def parsevariables(line):
+def evaluate_variables(line):
     variables = re.findall(var_name, line)
 
     for var in variables:
-        value = getvariable(var)
+        value = get_variable(var)
         line = line.replace(var, value)
 
     return line
 
-def managegroup(group_name):
+def create_group_if_not_exist(group_name):
     global groups
 
     if not group_name in groups:
@@ -88,7 +88,6 @@ def handlepermission(group, perm):
 
     if negate_perm not in groups[group]:
         groups[group].append(perm)
-
 
 # Language functions
 def func_include(file_path):
@@ -157,14 +156,14 @@ for line in filecontents:
         name = vardata.group(1)
         value = vardata.group(2)
 
-        createvariable(name, value)
+        set_variable(name, value)
         continue
 
     if var_name.search(line) is not None:
-        line = parsevariables(line)
+        line = evaluate_variables(line)
 
     if group_declaration.match(line):
-        last_group = managegroup(line)
+        last_group = create_group_if_not_exist(line)
         continue
 
     line = line.strip()
