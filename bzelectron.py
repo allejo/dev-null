@@ -179,7 +179,7 @@ functions = {
 
 # Setup getopt
 try:
-    opts, args = getopt.getopt(sys.argv[1:], "hi:", ["file="])
+    opts, args = getopt.getopt(sys.argv[1:], "hi:o:", ["input=", "output="])
 except getopt.GetoptError:
     print 'bzgdbc.py -i <inputfile> -o <outputfile>'
     sys.exit(2)
@@ -188,8 +188,10 @@ for opt, arg in opts:
     if opt == '-h':
         print 'bzgdbc.py -i <inputfile> -o <outputfile>'
         sys.exit()
-    elif opt in ("-i", "--file"):
+    elif opt in ("-i", "--input"):
         inputfile = arg
+    elif opt in ("-o", "--output"):
+        outputfile = arg
 
 
 # Parse the initial file
@@ -197,6 +199,9 @@ parse(inputfile)
 
 
 # Output the gathered information
+if os.path.isfile(outputfile):
+    os.remove(outputfile)
 
-for group in groups:
-    print '{}: {}'.format(group, ' '.join(groups[group]))
+with open(outputfile, "a") as f:
+    for group in groups:
+        f.write('{}: {}\n'.format(group, ' '.join(groups[group])))
