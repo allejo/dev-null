@@ -7,9 +7,8 @@ import sys
 
 
 # Global variables we'll abuse and reuse
-line_counter = 0
 inputfile = ''
-filecontents = ''
+outputfile = ''
 variables = {}
 groups = {}
 
@@ -23,6 +22,11 @@ var_name = re.compile("(" + varname + ")")
 comment_line = re.compile(comment)
 var_instantiation = re.compile("(" + varname + ")\s?=\s?\"(.+)\"")
 group_declaration = re.compile("(" + groupname + ")")
+
+
+# Custom exceptions we'll be raising
+class IncludeError(Exception):
+    pass
 
 
 # Functions
@@ -40,8 +44,6 @@ def set_variable(name, value):
     variables[name] = value
 
 def get_variable(name):
-    global line_counter
-
     try:
         return variables[name]
     except:
@@ -143,6 +145,9 @@ def parse(filepath):
 
             try:
                 functions[func_call](params)
+            except IncludeError, e:
+                print str(e), "on line", line_counter, "of file:", filepath
+                sys.exit(2)
             except KeyError:
                 print "Undefined function @" + func_call + " on line", line_counter, "of file:", filepath
                 sys.exit(2)
@@ -150,19 +155,15 @@ def parse(filepath):
 
 # Language functions
 def func_include(file_path):
-    global line_counter
-
     file_path = file_path[1]
 
-    try:
+    if os.path.isfile(file_path):
         parse(file_path)
-    except IOError:
-        print "Fatal: Included file '" + file_path + "' not found on line", line_counter
-        sys.exit(2)
+    else:
+        raise IncludeError("Included file '{}' not found".format(file_path))
 
 def func_extend(params):
     global groups
-    global line_counter
 
     target_group = params[0]
     extend_group = params[1]
@@ -180,7 +181,7 @@ functions = {
 try:
     opts, args = getopt.getopt(sys.argv[1:], "hi:", ["file="])
 except getopt.GetoptError:
-    print 'bzgdbc.py -i <inputfile>'
+    print 'bzgdbc.py -i <inputfile> -o <outputfile>'
     sys.exit(2)
 
 for opt, arg in opts:
@@ -191,7 +192,10 @@ for opt, arg in opts:
         inputfile = arg
 
 
-# Load the initial file
+# Parse the initial file
 parse(inputfile)
+
+
+# Output the gathered information
 
 print groups
