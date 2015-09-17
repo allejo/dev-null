@@ -198,4 +198,5 @@ parse(inputfile)
 
 # Output the gathered information
 
-print groups
+for group in groups:
+    print '{}: {}'.format(group, ' '.join(groups[group]))
