@@ -26,12 +26,12 @@ group_declaration = re.compile("(" + groupname + ")")
 
 
 # Functions
-def loadfile (path):
+def loadfile(path):
     try:
         with open(path) as f:
             return f.read().splitlines()
     except IOError:
-        print "Fatal: File not found", inputfile
+        print "bzgrpc: " + path + ": No such file"
         sys.exit(2)
 
 def set_variable(name, value):
@@ -45,8 +45,7 @@ def get_variable(name):
     try:
         return variables[name]
     except:
-        print "Fatal: Variable", name, "on line", line_counter, "was not previously initialized."
-        sys.exit(2)
+        raise NameError('Variable {} was not previously initialized'.format(name))
 
 def evaluate_variables(line):
     variables = re.findall(var_name, line)
@@ -117,7 +116,11 @@ def parse(filepath):
             continue
 
         if var_name.search(line) is not None:
-            line = evaluate_variables(line)
+            try:
+                line = evaluate_variables(line)
+            except NameError, e:
+                print str(e), "on line", line_counter, "of file:", filepath
+                sys.exit(2)
 
         if group_declaration.match(line):
             last_group = create_group_if_not_exist(line)
@@ -141,7 +144,7 @@ def parse(filepath):
             try:
                 functions[func_call](params)
             except KeyError:
-                print "Undefined function: @" + func_call + " on line", line_counter, "of", inputfile
+                print "Undefined function @" + func_call + " on line", line_counter, "of file:", filepath
                 sys.exit(2)
 
 
