@@ -1,0 +1,121 @@
+/// Create a Bootstrap navbar theme
+///
+/// @access public
+///
+/// @param {string} $name
+///   The name of the navbar theme; e.g. using `custom` will result in a `navbar-custom` class to be used instead of
+///   `navbar-default`.
+/// @param {Color}  $bgDefault
+///   The background color of the navbar
+/// @param {Color}  $bgHover
+///   The background color of a link when it is hovered over
+/// @param {Color}  $bgSelected
+///   The background color of a link when it is active
+/// @param {Color}  $linkColor
+///   The color of every link
+/// @param {Color}  $linkColorSelected
+///   The color of every link when it is active
+///
+/// @link http://work.smarchal.com/twbscolor/ Courtesy of TWBS Color
+
+@mixin navbar ($name, $bgDefault, $bgHover, $bgSelected, $linkColor, $linkColorSelected) {
+    .navbar-#{$name} {
+        background-color: $bgDefault;
+        border-color: $bgSelected;
+
+        .navbar-brand {
+            color: $linkColor;
+
+            &:hover, &:focus {
+                color: $linkColorSelected;
+            }
+        }
+        .navbar-text {
+            color: $linkColor;
+        }
+        .navbar-nav {
+            > li {
+                > a {
+                    color: $linkColor;
+
+                    &:hover, &:focus {
+                        background-color: $bgHover;
+                        color: $linkColorSelected;
+                    }
+                }
+                > .dropdown-menu {
+                    background-color: $bgDefault;
+
+                    > li {
+                        > a {
+                            color: $linkColor;
+
+                            &:hover, &:focus {
+                                color: $linkColorSelected;
+                                background-color: $bgHover;
+                            }
+                        }
+                        > .divider {
+                            background-color: $bgSelected;
+                        }
+                    }
+                }
+            }
+            .open .dropdown-menu > .active {
+                > a, > a:hover, > a:focus {
+                    color: $linkColorSelected;
+                    background-color: $bgSelected;
+                }
+            }
+            > .active {
+                > a, > a:hover, > a:focus {
+                    color: $linkColorSelected;
+                    background-color: $bgSelected;
+                }
+            }
+            > .open {
+                > a, > a:hover, > a:focus {
+                    color: $linkColorSelected;
+                    background-color: $bgSelected;
+                }
+            }
+        }
+        .navbar-toggle {
+            border-color: $bgSelected;
+
+            &:hover, &:focus {
+                background-color: $bgSelected;
+            }
+            .icon-bar {
+                background-color: $linkColor;
+            }
+        }
+        .navbar-collapse, .navbar-form {
+            border-color: $linkColor;
+        }
+        .navbar-link {
+            color: $linkColor;
+
+            &:hover {
+                color: $linkColorSelected;
+            }
+        }
+    }
+    @media (max-width:767px) {
+        .navbar-default .navbar-nav .open .dropdown-menu {
+            > li > a {
+                color: $linkColor;
+
+                &:hover, &:focus {
+                    color: $linkColorSelected;
+                }
+            }
+            > .active {
+                > a, > a:hover, > a:focus {
+                    color: $linkColorSelected;
+                    background-color: $bgSelected;
+                }
+            }
+        }
+    }
+}
