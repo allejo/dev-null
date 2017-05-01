@@ -127,7 +127,13 @@ function(hljs) {
           built_in: OPTIONS_BLOCK,
           literal: BZDB_OPTIONS
         },
-        contains: COMMENT_MODES
+      },
+      {
+        begin: 'name', end: /$/,
+        returnBegin: true,
+        keywords: {
+          built_in: 'name'
+        }
       },
       hljs.C_NUMBER_MODE
     ].concat(COMMENT_MODES)
