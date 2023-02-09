@@ -1,0 +1,22 @@
+name: Demo Workflow
+
+on:
+    push: ~
+
+jobs:
+    tests:
+        name: Try a PHP command
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Set up PHP ${{ matrix.php-versions }}
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{ matrix.php-versions }}
+                  extensions: curl, json, soap, sockets
+                  coverage: xdebug
+            
+            - name: Start PHP web server
+              run: php -S localhost:8080
