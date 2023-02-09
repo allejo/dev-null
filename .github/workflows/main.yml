@@ -11,10 +11,10 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v2
 
-            - name: Set up PHP ${{ matrix.php-versions }}
+            - name: Set up PHP 8.2
               uses: shivammathur/setup-php@v2
               with:
-                  php-version: ${{ matrix.php-versions }}
+                  php-version: 8.2
                   extensions: curl, json, soap, sockets
                   coverage: xdebug
             
