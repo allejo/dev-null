@@ -14,12 +14,11 @@ jobs:
             - name: Set up Cloud SDK
               uses: google-github-actions/setup-gcloud@v1
 
-            - uses: actions/setup-python@v4
-              with:
-                python-version: '3.10'
-            
-            - name: Install dependencies
-              run: pip install termcolor
-
             - name: List datasets
-              run: bq query --use_legacy_sql=false "SELECT * FROM \`vlad_test.mockaroo\`"
+              run: |
+                bq query \
+                    --quiet \
+                    --headless \
+                    --format=csv \
+                    --use_legacy_sql=false \
+                    "SELECT * FROM \`vlad_test.mockaroo\`"
