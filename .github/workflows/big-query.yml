@@ -1,0 +1,18 @@
+on:
+    push: ~
+
+jobs:
+    big_query:
+        name: Big Query
+        runs-on: ubuntu-latest
+        steps:
+            - id: 'auth'
+              uses: 'google-github-actions/auth@v1'
+              with:
+                  credentials_json: '${{ secrets.GCLOUD_BIG_QUERY }}'
+      
+            - name: 'Set up Cloud SDK'
+              uses: 'google-github-actions/setup-gcloud@v1'
+
+            - name: List datasets
+              run: bq ls
