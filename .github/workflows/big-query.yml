@@ -22,4 +22,4 @@ jobs:
               run: pip install termcolor
 
             - name: List datasets
-              run: bq query 'SELECT * FROM `vlad_test.mockaroo`'
+              run: bq query 'SELECT * FROM \`vlad_test.mockaroo\`'
