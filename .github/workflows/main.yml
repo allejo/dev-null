@@ -5,18 +5,11 @@ on:
 
 jobs:
     tests:
-        name: Try a PHP command
+        name: Get Bash Version
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
               uses: actions/checkout@v2
 
-            - name: Set up PHP 8.2
-              uses: shivammathur/setup-php@v2
-              with:
-                  php-version: 8.2
-                  extensions: curl, json, soap, sockets
-                  coverage: xdebug
-            
-            - name: Start PHP web server
-              run: php -S localhost:8080
+            - name: Get version
+              run: echo ${BASH_VERSION}
