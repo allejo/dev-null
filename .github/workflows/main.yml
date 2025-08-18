@@ -7,7 +7,7 @@ on:
 jobs:
   notify-slack:
     runs-on: ubuntu-latest
-    if: github.event.label.name == 'demo-1' || github.event.label.name == 'demo-2'
+    if: github.event.label.name == 'bug' || github.event.label.name == 'invalid'
     steps:
         - run: |
             echo "hello"
