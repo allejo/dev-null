@@ -1,28 +1,13 @@
 name: Demo Workflow
 
 on:
-    push: ~
+  issues:
+    types: [labeled]
 
 jobs:
-    tests:
-        name: Get Bash Version
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v2
-
-            - name: Get version
-              run: |
-                  declare -A ignore_list
-
-                  ignore_list["tsconfig"]=1
-
-                  if [[ ${ignore_list["tsconfig"]} ]];
-                  then
-                     echo "Yup, it's in the list"
-                  fi
-
-                  if [[ ${ignore_list["components"]} ]];
-                  then
-                     echo "Yup, doesn't exist"
-                  fi
+  notify-slack:
+    runs-on: ubuntu-latest
+    if: github.event.label.name == 'demo-1' || github.event.label.name == 'demo-2'
+    steps:
+        - run: |
+            echo "hello"
